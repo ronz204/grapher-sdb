@@ -5,12 +5,13 @@
   "author": {
     "name": "ronz"
   },
+  "description": "A GraphQL query builder for TypeScript.",
   "sideEffects": false,
   "files": [
     "dist"
   ],
-  "module": "./dist/index.js",
   "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
