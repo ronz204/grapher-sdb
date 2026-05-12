@@ -31,6 +31,11 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
+
+    // Module resolution & path mapping
+    "paths": {
+      
+    },
   },
   "include": ["source"],
   "exclude": ["dist", "node_modules"],
