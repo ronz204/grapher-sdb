@@ -9,5 +9,8 @@ const TEST_QUERY = gql<TestData, TestVars>`
   }
 `;
 
+console.log(TEST_QUERY.loc?.source.body);
+
+
 /* const userId = "42";
 const query = gql`query { user(id: ${userId}) { name } }`; */
