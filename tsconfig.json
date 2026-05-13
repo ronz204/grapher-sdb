@@ -34,6 +34,8 @@
 
     // Module resolution & path mapping
     "paths": {
+      "@core/*": ["./source/core/*"],
+
       "@gql":    ["./source/gql.ts"],
       "@types": ["./source/types.ts"],
     },
