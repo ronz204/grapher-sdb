@@ -1,22 +1,4 @@
-import { GraphQLError } from "graphql";
-
-export type GqlNetworkError = {
-  type: "network";
-  message: string;
-  cause?: unknown;
-};
-
-export type GqlTimeoutError = {
-  type: "timeout";
-  ms: number;
-};
-
-export type GqlResponseError = {
-  type: "response";
-  errors: GraphQLError[];
-};
-
-export type GqlError = GqlNetworkError | GqlTimeoutError | GqlResponseError;
+import type { GqlError } from "./types";
 
 export type Result<TData, TError = GqlError> =
   | { ok: true; data: TData }

@@ -1,5 +1,5 @@
 import { describe, it, expect, expectTypeOf } from "vitest";
-import { isOk, isErr, type Result } from "@types";
+import { isOk, isErr, type Result } from "@errors/result";
 
 describe("isOk / isErr", () => {
   it("isOk narrows to the success branch", () => {

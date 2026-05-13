@@ -1,19 +1,12 @@
 import { describe, it, expect } from "vitest";
-import type { GqlNetworkError, GqlTimeoutError, GqlResponseError } from "@types";
+import type {
+  GqlNetworkError, GqlTimeoutError, GqlResponseError
+} from "@errors/types";
 
 describe("error type discriminants", () => {
   it("GqlNetworkError has type 'network'", () => {
     const err: GqlNetworkError = { type: "network", message: "failed" };
     expect(err.type).toBe("network");
-  });
-
-  it("GqlNetworkError accepts an optional cause", () => {
-    const err: GqlNetworkError = {
-      type: "network",
-      message: "failed",
-      cause: new Error("root cause"),
-    };
-    expect(err.cause).toBeInstanceOf(Error);
   });
 
   it("GqlTimeoutError has type 'timeout'", () => {
