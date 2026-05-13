@@ -34,9 +34,10 @@
 
     // Module resolution & path mapping
     "paths": {
-      
+      "@gql":    ["./source/gql.ts"],
+      "@types": ["./source/types.ts"],
     },
   },
-  "include": ["source"],
+  "include": ["source", "testing"],
   "exclude": ["dist", "node_modules"],
 }
