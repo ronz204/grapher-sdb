@@ -1,7 +1,7 @@
 import { parse, GraphQLError } from "graphql";
 import type { TypedQueryDocumentNode } from "graphql";
 
-function formatError(err: GraphQLError, query: string): Error {
+function formatter(err: GraphQLError, query: string): Error {
   const location = err.locations?.[0];
 
   if (!location) {
@@ -42,7 +42,7 @@ export function gql<TData = unknown, TVariables = never>(
     return document as TypedQueryDocumentNode<TData, TVariables>;
   } catch (err) {
     if (err instanceof GraphQLError) {
-      throw formatError(err, query);
+      throw formatter(err, query);
     };
     throw err;
   };
