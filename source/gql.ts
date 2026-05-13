@@ -36,14 +36,10 @@ export function gql<TData = unknown, TVariables = never>(
   };
 
   const query = strings.raw.join("");
-
   try {
-    const document = parse(query);
-    return document as TypedQueryDocumentNode<TData, TVariables>;
+    return parse(query) as TypedQueryDocumentNode<TData, TVariables>
   } catch (err) {
-    if (err instanceof GraphQLError) {
-      throw formatter(err, query);
-    };
+    if (err instanceof GraphQLError) throw formatter(err, query);
     throw err;
   };
 };
