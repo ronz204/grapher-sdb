@@ -3,10 +3,12 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   resolve: {
     alias: {
-      "@core": "./source/core",
-
       "@gql": "./source/gql",
-      "@types": "./source/types",
+      "@errors": "./source/errors",
+      "@pipelines": "./source/pipelines",
+      "@transports": "./source/transports",
+
+      "@core": "./source/core",
     },
   },
   test: {

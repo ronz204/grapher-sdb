@@ -34,10 +34,12 @@
 
     // Module resolution & path mapping
     "paths": {
-      "@core/*": ["./source/core/*"],
-
       "@gql":    ["./source/gql.ts"],
-      "@types": ["./source/types.ts"],
+      "@errors/*": ["./source/errors/*"],
+      "@pipelines/*": ["./source/pipelines/*"],
+      "@transports/*": ["./source/transports/*"],
+
+      "@core/*": ["./source/core/*"],
     },
   },
   "include": ["source", "testing"],
