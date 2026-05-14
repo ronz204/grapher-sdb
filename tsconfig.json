@@ -5,7 +5,6 @@
     "target": "ESNext",
     "module": "Preserve",
     "moduleDetection": "force",
-
     // Bundler mode
     "outDir": "./dist",
     "types": ["@types/bun"],
@@ -13,7 +12,6 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
-
     // Best practices
     "strict": true,
     "sourceMap": true,
@@ -21,27 +19,30 @@
     "declarationMap": true,
     "isolatedModules": true,
     "isolatedDeclarations": true,
-
     "skipLibCheck": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
-
     // Module resolution & path mapping
     "paths": {
-      "@gql":    ["./source/gql.ts"],
-      "@errors/*": ["./source/errors/*"],
-      "@pipelines/*": ["./source/pipelines/*"],
-      "@transports/*": ["./source/transports/*"],
-
-      "@core/*": ["./source/core/*"],
+      "@graphql/*": [
+        "./source/graphql/*"
+      ],
+      "@pipelines/*": [
+        "./source/pipelines/*"
+      ],
     },
   },
-  "include": ["source", "testing"],
-  "exclude": ["dist", "node_modules"],
+  "include": [
+    "source",
+    "testing"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
 }
