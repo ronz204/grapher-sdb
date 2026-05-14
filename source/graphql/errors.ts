@@ -19,3 +19,8 @@ export type GqlError =
   | GqlNetworkError
   | GqlTimeoutError
   | GqlResponseError;
+
+export type GqlResponse = {
+  data?: unknown;
+  errors?: GraphQLError[];
+};
