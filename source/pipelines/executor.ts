@@ -1,9 +1,11 @@
-import type { Middleware, Operation, Transport } from "./types";
-import type { Context, Headers } from "./types";
 import type { Result } from "@graphql/results";
-
 import { Mapper } from "@graphql/mapper";
 import { Pipeline } from "./pipeline";
+
+import type {
+  Middleware, Operation,
+  Transport, Context, Headers,
+} from "./types";
 
 export class Executor {
   constructor(
