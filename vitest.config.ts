@@ -3,9 +3,7 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   resolve: {
     alias: {
-      "@client": "./source/client",
-      "@graphql": "./source/graphql",
-      "@pipelines": "./source/pipelines",
+      "@core": "./source/core",
       "@transports": "./source/transports",
     },
   },
