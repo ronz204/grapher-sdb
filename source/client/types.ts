@@ -5,5 +5,3 @@ export type ClientConfig = {
   headers?: Record<string, string>;
   middleware?: Middleware[];
 };
-
-export type VarsArgs<TVariables> = [TVariables] extends [never] ? [] : [vars: TVariables];

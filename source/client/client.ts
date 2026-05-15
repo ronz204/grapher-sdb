@@ -1,11 +1,14 @@
 import { print } from "graphql";
-import type { DocumentNode, TypedQueryDocumentNode, OperationDefinitionNode } from "graphql";
+import type { DocumentNode, TypedQueryDocumentNode } from "graphql";
 import type { Operation } from "@pipelines/types";
 import { Builder } from "./builder";
-import type { ClientConfig, VarsArgs } from "./types";
+import type { ClientConfig } from "./types";
 
 function buildOp(doc: DocumentNode, vars?: unknown): Operation {
-  const name = (doc.definitions[0] as OperationDefinitionNode | undefined)?.name?.value ?? "";
+  const def = doc.definitions[0];
+  const name = def !== undefined && def.kind === "OperationDefinition" && def.name != null
+    ? def.name.value
+    : "";
   return {
     name,
     query: print(doc),
@@ -16,17 +19,15 @@ function buildOp(doc: DocumentNode, vars?: unknown): Operation {
 export class Client {
   constructor(private readonly config: ClientConfig) {}
 
-  public query<TData, TVariables>(
-    doc: TypedQueryDocumentNode<TData, TVariables>,
-    ...args: VarsArgs<TVariables>
-  ): Builder<TData> {
-    return new Builder(this.config, buildOp(doc, args[0] as unknown), []);
+  public query<TData>(doc: TypedQueryDocumentNode<TData, never>): Builder<TData>;
+  public query<TData, TVariables>(doc: TypedQueryDocumentNode<TData, TVariables>, vars: TVariables): Builder<TData>;
+  public query<TData, TVariables>(doc: TypedQueryDocumentNode<TData, TVariables>, vars?: TVariables): Builder<TData> {
+    return new Builder(this.config, buildOp(doc, vars), []);
   };
 
-  public mutation<TData, TVariables>(
-    doc: TypedQueryDocumentNode<TData, TVariables>,
-    ...args: VarsArgs<TVariables>
-  ): Builder<TData> {
-    return new Builder(this.config, buildOp(doc, args[0] as unknown), []);
+  public mutation<TData>(doc: TypedQueryDocumentNode<TData, never>): Builder<TData>;
+  public mutation<TData, TVariables>(doc: TypedQueryDocumentNode<TData, TVariables>, vars: TVariables): Builder<TData>;
+  public mutation<TData, TVariables>(doc: TypedQueryDocumentNode<TData, TVariables>, vars?: TVariables): Builder<TData> {
+    return new Builder(this.config, buildOp(doc, vars), []);
   };
 };
