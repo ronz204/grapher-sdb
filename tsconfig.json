@@ -32,6 +32,9 @@
       "@core/*": [
         "./source/core/*"
       ],
+      "@errors/*": [
+        "./source/errors/*"
+      ],
       "@transports/*": [
         "./source/transports/*"
       ],

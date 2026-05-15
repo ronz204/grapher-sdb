@@ -1,5 +1,5 @@
-import type { Result } from "@graphql/results";
-import { Mapper } from "@graphql/mapper";
+import type { Result } from "@errors/results"; 
+import { Mapper } from "@errors/mapper";
 import { Pipeline } from "./pipeline";
 
 import type {

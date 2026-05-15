@@ -5,7 +5,7 @@ import type {
   GqlNetworkError,
   GqlResponseError,
   GqlTimeoutError,
-} from "./errors";
+} from "./types";
 
 export abstract class Mapper {
   public static toOkResponse<TData>(data: unknown): Result<TData> {

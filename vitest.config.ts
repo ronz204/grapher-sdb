@@ -4,6 +4,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@core": "./source/core",
+      "@errors": "./source/errors",
       "@transports": "./source/transports",
     },
   },
