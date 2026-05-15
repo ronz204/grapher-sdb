@@ -1,10 +1,10 @@
-import type { Middleware, Context, NextFn } from "./types";
+import type { Middleware, Context, Next } from "./types";
 
 export class Pipeline {
   constructor(private middleware: Middleware[]) {};
 
   public run(ctx: Context): Promise<Context> {
-    const execute = (index: number): NextFn => (ctx: Context) => {
+    const execute = (index: number): Next => (ctx: Context) => {
       if (index >= this.middleware.length) {
         return Promise.resolve(ctx);
       };

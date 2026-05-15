@@ -9,10 +9,9 @@ export type Operation = {
 
 export type Context = {
   headers: Headers;
-  transport: Transport;
   operation: Operation;
 };
 
-export type NextFn = (ctx: Context) => Promise<Context>;
+export type Next = (ctx: Context) => Promise<Context>;
 export type Transport = (op: Operation) => Promise<GqlResponse>;
-export type Middleware = (ctx: Context, next: NextFn) => Promise<Context>;
+export type Middleware = (ctx: Context, next: Next) => Promise<Context>;
