@@ -8,8 +8,8 @@ import type {
 } from "./errors";
 
 export abstract class Mapper {
-  public static toOkResponse<TData>(data: TData): Result<TData> {
-    return { ok: true, data };
+  public static toOkResponse<TData>(data: unknown): Result<TData> {
+    return { ok: true, data: data as TData };
   };
 
   public static toNetworkErr(err: unknown): Result<never, GqlNetworkError> {
