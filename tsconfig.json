@@ -29,6 +29,9 @@
     "noPropertyAccessFromIndexSignature": false,
     // Module resolution & path mapping
     "paths": {
+      "@client": [
+        "./source/client"
+      ],
       "@graphql/*": [
         "./source/graphql/*"
       ],
