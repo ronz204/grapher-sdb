@@ -35,6 +35,9 @@
       "@pipelines/*": [
         "./source/pipelines/*"
       ],
+      "@transports/*": [
+        "./source/transports/*"
+      ],
     },
   },
   "include": [

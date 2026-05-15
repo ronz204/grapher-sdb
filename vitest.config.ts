@@ -5,6 +5,7 @@ export default defineConfig({
     alias: {
       "@graphql": "./source/graphql",
       "@pipelines": "./source/pipelines",
+      "@transports": "./source/transports",
     },
   },
   test: {
