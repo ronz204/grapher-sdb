@@ -1,18 +1,21 @@
 import type { Middleware, Context, Next } from "./types";
 
-export class Pipeline {
-  constructor(private middleware: Middleware[]) {};
+export type PipelineConfig = {
+  context: Context;
+  middleware: Middleware[];
+};
 
-  public run(ctx: Context): Promise<Context> {
-    const execute = (index: number): Next => (ctx: Context) => {
-      if (index >= this.middleware.length) {
-        return Promise.resolve(ctx);
-      };
+export function pipeline(config: PipelineConfig): Promise<Context> {
+  const { context, middleware } = config;
 
-      const mw = this.middleware[index]!;
-      return mw(ctx, execute(index + 1));
+  const execute = (index: number): Next => (ctx: Context) => {
+    if (index >= middleware.length) {
+      return Promise.resolve(ctx);
     };
 
-    return execute(0)(ctx);
+    const mw = middleware[index]!;
+    return mw(ctx, execute(index + 1));
   };
+
+  return execute(0)(context);
 };
