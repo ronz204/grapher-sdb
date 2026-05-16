@@ -1,6 +1,7 @@
 import type { Result } from "@errors/results"; 
-import { Mapper } from "@errors/mapper";
 import { Pipeline } from "./pipeline";
+import { ok } from "@errors/results";
+import { Err } from "@errors/types";
 
 import type {
   Middleware, Operation,
@@ -22,12 +23,12 @@ export class Executor {
       const response = await this.transport(piped.operation);
 
       if (response.errors && response.errors.length > 0) {
-        return Mapper.toResponseErr(response.errors);
+        return Err.response(response.errors);
       };
 
-      return Mapper.toOkResponse<TData>(response.data);
+      return ok<TData>(response.data);
     } catch (err) {
-      return Mapper.toNetworkErr(err);
+      return Err.network(err);
     };
   };
 };

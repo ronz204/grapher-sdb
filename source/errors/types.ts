@@ -1,18 +1,24 @@
-import { GraphQLError } from "graphql";
+import type { GraphQLError } from "graphql";
+import type { Result } from "./results";
+
+export type GqlResponse = {
+  data?: unknown;
+  errors?: GraphQLError[];
+};
 
 export type GqlNetworkError = {
-  type: "network";
-  message: string;
+  readonly type: "network";
+  readonly message: string;
 };
 
 export type GqlTimeoutError = {
-  type: "timeout";
-  ms: number;
+  readonly type: "timeout";
+  readonly ms: number;
 };
 
 export type GqlResponseError = {
-  type: "response";
-  errors: GraphQLError[];
+  readonly type: "response";
+  readonly errors: GraphQLError[];
 };
 
 export type GqlError =
@@ -20,7 +26,18 @@ export type GqlError =
   | GqlTimeoutError
   | GqlResponseError;
 
-export type GqlResponse = {
-  data?: unknown;
-  errors?: GraphQLError[];
-};
+
+export const Err = {
+  network(err: unknown): Result<never, GqlNetworkError> {
+    const message = err instanceof Error ? err.message : String(err);
+    return { ok: false, error: { type: "network", message } };
+  },
+
+  timeout(ms: number): Result<never, GqlTimeoutError> {
+    return { ok: false, error: { type: "timeout", ms } };
+  },
+
+  response(errors: GraphQLError[]): Result<never, GqlResponseError> {
+    return { ok: false, error: { type: "response", errors } };
+  },
+} as const;
