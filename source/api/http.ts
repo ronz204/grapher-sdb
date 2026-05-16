@@ -1,14 +1,12 @@
 import type { Headers, Operation, Transport } from "@core/types";
 import type { GqlResponse } from "@errors/types";
 
-interface Config {
+interface HttpConfig {
   url: string; headers?: Headers;
 };
 
-export function httpTransport(config: Config): Transport {
+export function httpTransport(config: HttpConfig): Transport {
   return async (op: Operation): Promise<GqlResponse> => {
-    const vars = (op.vars !== undefined && { variables: op.vars });
-
     const response = await fetch(config.url, {
       method: "POST",
       headers: {
@@ -16,8 +14,9 @@ export function httpTransport(config: Config): Transport {
         ...config.headers
       },
       body: JSON.stringify({
-        ...vars, query: op.query,
-        operationName: op.name,
+        query: op.query,
+        ...(op.vars !== undefined && { variables: op.vars }),
+        ...(op.name && { operationName: op.name }),
       }),
     });
 

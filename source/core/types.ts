@@ -2,7 +2,7 @@ import type { GqlResponse } from "@errors/types";
 export type Headers = Record<string, string>;
 
 export type Operation = {
-  name: string;
+  name?: string;
   query: string;
   vars?: unknown;
 };
