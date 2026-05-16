@@ -28,17 +28,7 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
     // Module resolution & path mapping
-    "paths": {
-      "@core/*": [
-        "./source/core/*"
-      ],
-      "@errors/*": [
-        "./source/errors/*"
-      ],
-      "@transports/*": [
-        "./source/transports/*"
-      ],
-    },
+    "paths": {},
   },
   "include": [
     "source",
