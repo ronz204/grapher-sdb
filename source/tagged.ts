@@ -1,3 +1,4 @@
+import type { Operation } from "./types";
 import type { DocumentNode } from "graphql";
 import { parse, print, GraphQLError } from "graphql";
 
@@ -39,3 +40,21 @@ export const astToStr = (doc: DocumentNode): string => print(doc);
 
 export const getOperationName = (doc: DocumentNode): string | undefined =>
   doc.definitions.find(d => d.kind === "OperationDefinition")?.name?.value;
+
+
+export function toOperation(doc: DocumentNode, variables: unknown): Operation {
+  const operation: Operation = {
+    query: astToStr(doc),
+  };
+
+  if (variables !== undefined) {
+    operation.variables = variables;
+  };
+
+  const name = getOperationName(doc);
+  if (name !== undefined) {
+    operation.operationName = name;
+  };
+
+  return operation;
+};
