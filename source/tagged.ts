@@ -36,3 +36,6 @@ export function formatter({ query, err }: Arguments): Error {
 
 export const strToAst = (query: string): DocumentNode => parse(query);
 export const astToStr = (doc: DocumentNode): string => print(doc);
+
+export const getOperationName = (doc: DocumentNode): string | undefined =>
+  doc.definitions.find(d => d.kind === "OperationDefinition")?.name?.value;

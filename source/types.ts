@@ -7,7 +7,7 @@ export type Headers = Record<string, string>;
 export type Operation = {
   query: string;
   variables?: unknown;
-  operationName: string;
+  operationName?: string;
 };
 
 export type Context = {
@@ -15,6 +15,5 @@ export type Context = {
   operation: Operation;
 };
 
-export type Next = (ctx: Context) => Promise<Context>;
-export type Proto = (op: Operation) => Promise<GqlResponse>;
-export type Plugin = (ctx: Context, next: Next) => Promise<Context>;
+export type Handler = (ctx: Context) => Promise<GqlResponse>;
+export type Plugin  = (next: Handler) => Handler;
