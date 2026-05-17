@@ -1,6 +1,11 @@
 import type { GraphQLError } from "graphql";
 import type { Result } from "./results";
 
+export type GqlResponse = {
+  readonly data?: unknown;
+  readonly errors?: GraphQLError[];
+};
+
 export type GqlNetworkError = {
   readonly type: "network";
   readonly message: string;
